@@ -95,15 +95,20 @@ function createTask(){
   saveTasks();
 }
 
-A
+
 function saveTasks(){
+  tasks = taskList.innerHTML;
+  window.localStorage.setItem('tasks', JSON.stringify(tasks));
+
 
 }
 
 
-function clearTasks(e){
-  console.log(ClearTasks)
-};
+// function clearTasks(e){
+//   while(taskList.firstChild){
+//     taskList.remove(taskList.firstChild);
+//   }
+// };
 
 function checkTaskAction(e){
   console.log(checkTaskAction)
