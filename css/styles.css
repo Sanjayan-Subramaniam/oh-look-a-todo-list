@@ -32,6 +32,10 @@ button {
   background: white;
   text-align: center;
   cursor: pointer;
+  padding: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 2rem;
 }
 
 .input-container {
@@ -102,20 +106,5 @@ button {
   text-align: center;
   background-color: white;
   margin-right: 2rem;
-}
-
-.task-container .task-list div .edit-task {
-  padding: 0.5rem;
-  width: 1rem;
-  height: 1rem;
-  margin-right: 2rem;
-}
-
-.task-container .task-list div .delete-task {
-  width: 3em;
-  height: 1em;
-  padding: 0.5rem;
-  white-space: nowrap;
-  text-align: center;
 }
 /*# sourceMappingURL=styles.css.map */
