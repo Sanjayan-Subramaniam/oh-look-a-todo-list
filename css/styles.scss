@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+
+
+body{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: Lobster, sans-serif;
+  background-color: #A8A8F5;
+}
+
+.container{
+  
+  max-width: 1200px;
+  margin: 0 auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input, button, ul, li{
+  all:unset;
+}
+
+button{
+  
+  display: inline-block;
+  background: white;
+  text-align:center;
+  cursor: pointer;
+}
+
+.input-container{
+  width: 60%;
+  display:flex;
+  justify-items: flex-start;
+  align-items: stretch;
+  //justify-content: space-between;
+
+    input{
+      width: 65%;
+      padding: 0.25rem;
+      background-color:gray;
+      margin-right: 2rem;
+    }
+
+    .add-tasks{
+      padding: 0.5rem;
+      width: 1rem;
+      height: 1rem;
+      margin-right: 2rem;
+    }
+
+    .clear-tasks{
+      width: 3rem;
+      height: 1rem;
+      //margin: 0 1%;
+      padding: 0.5rem 1em;
+      white-space: nowrap;
+      text-align: center;
+      line-height: 1em;
+    }
+}
+
+.task-container{
+  width: 60%;
+  display:flex;
+  justify-items: flex-start;
+  align-items: stretch;
+  margin-top: 3rem;
+
+  //justify-content: space-between;
+  
+    .task-list{
+      width:100%;
+      //margin: 0;
+
+      div{
+        width:100%;
+        margin: 1rem 0;
+        display:flex;
+        align-items: baseline;
+        //justify-content: space-between;
+
+          li{
+            width: 65%;
+            height:1rem;
+            padding: 0.5rem 0.25rem;
+            text-align:center;
+            background-color: white;
+            margin-right: 2rem;
+           
+          }
+          .edit-task{
+            padding: 0.5rem ;
+            width: 1rem;
+            height: 1rem;
+            margin-right: 2rem;
+            //margin: 0 1%;
+          }
+
+          .delete-task{
+            width: 3em;
+            height: 1em;
+            //margin: 0 1%;
+            padding: 0.5rem;
+            white-space: nowrap;
+            text-align: center;
+
+          }
+      }
+
+    }
+
+}
+
