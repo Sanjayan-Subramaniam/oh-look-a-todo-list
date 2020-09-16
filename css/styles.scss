@@ -90,7 +90,7 @@ button{
         align-items: baseline;
 
 
-          li{
+          input{
             width: 65%;
             height:1rem;
             padding: 0.5rem 0.25rem;
@@ -98,7 +98,14 @@ button{
             background-color: white;
             margin-right: 2rem;
            
+          
           }
+
+          .edit-mode{
+            border: 3px solid orange;
+          }
+
+          
           // .edit-task{
           //   padding: 0.5rem ;
           //   width: 1rem;

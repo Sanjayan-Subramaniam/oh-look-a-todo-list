@@ -99,12 +99,16 @@ button {
           align-items: baseline;
 }
 
-.task-container .task-list div li {
+.task-container .task-list div input {
   width: 65%;
   height: 1rem;
   padding: 0.5rem 0.25rem;
   text-align: center;
   background-color: white;
   margin-right: 2rem;
+}
+
+.task-container .task-list div .edit-mode {
+  border: 3px solid orange;
 }
 /*# sourceMappingURL=styles.css.map */

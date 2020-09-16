@@ -76,10 +76,11 @@ function createTask(){
   const newTaskContainer = document.createElement("div");
   newTaskContainer.classList.add("new-task-container");
   taskList.appendChild(newTaskContainer);
-  //create the li 
-  const newTask = document.createElement("li");
-  newTask.innerText = taskValue;
+  //create the input 
+  const newTask = document.createElement("input");
+  newTask.value = taskValue;
   newTaskContainer.appendChild(newTask);
+  newTask.setAttribute("readonly", "readonly");
   //create the edit button
   const newEditBtn = document.createElement("button");
   newEditBtn.classList.add("edit-task");
@@ -98,25 +99,51 @@ function createTask(){
 
 function saveTasks(){
   tasks = taskList.innerHTML;
+  window.localStorage.clear();
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
 
 
 }
 
 
-// function clearTasks(e){
-//   while(taskList.firstChild){
-//     taskList.remove(taskList.firstChild);
-//   }
-// };
-
-function checkTaskAction(e){
-  console.log(checkTaskAction)
+function clearTasks(e){
+ // taskList.innerHTML="";
+  
+  while(taskList.firstChild){
+    taskList.firstChild.remove();
+  }
+  
+  saveTasks();
 };
 
+function checkTaskAction(e){
 
 
+  if(e.target.classList.contains("edit-task")){
+    editTask(e.target);
+  } else if(e.target.classList.contains("delete-task")){
+    deleteTask(e.target);
+  }
+};
 
+function editTask(editBtn){
+  const editedTask = editBtn.previousSibling;
+  //clear readonly attribute of task input 
+  editedTask.readOnly = false;
+  editedTask.classList.toggle("edit-mode");
+  window.addEventListener("keypress", (e)=>{
+    if (e.key === "Enter"){
+      editedTask.readOnly = true;
+      editedTask.classList.toggle("edit-mode");
+      saveTasks();
+    }
+  })
+};
 
+function deleteTask(deleteBtn){
+  deleteBtn.parentElement.remove();
+  saveTasks();
+
+};
 
  
