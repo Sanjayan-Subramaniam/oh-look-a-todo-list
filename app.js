@@ -37,7 +37,7 @@ function LoadEventHandlers(){
 
  //Callback addTask function if add task button OR Enter key pressed
  addTaskBtn.addEventListener("click", addTask);
- document.addEventListener("keypress", addTask);
+ taskInput.addEventListener("keydown", addTask);
 
 //Callback clearTasks function if clear all button pressed
 clearAllTaskBtn.addEventListener("click", clearTasks);
@@ -53,7 +53,7 @@ function loadTasks(){
 
   //get all the task container divs
   taskDivs = taskList.childNodes;
-  console.log(taskDivs);
+  //console.log(taskDivs);
   taskDivs.forEach((taskDiv) => {
     taskDiv.firstChild.setAttribute("value",taskDiv.firstChild.getAttribute("data"));
     
@@ -116,7 +116,7 @@ function createTask(){
 
   //Save tasks to Local Storage
   saveTasks();
-  taskInput.value = " ";
+  taskInput.value = "";
 }
 
 
@@ -151,24 +151,35 @@ function checkTaskAction(e){
 
 function editTask(editBtn){
   const editedTask = editBtn.previousSibling;
-  //clear readonly attribute of task input 
-  editedTask.readOnly = false;
-  editedTask.classList.toggle("edit-mode");
+    console.log(editedTask);
+    editedTask.readOnly = false;
+    editedTask.classList.toggle("edit-mode");
+    editedTask.setAttribute("data", editedTask.value);
+    saveTasks();
   
-  window.addEventListener("keypress", (e)=>{
-    if (e.key === "Enter"){
-      editedTask.readOnly = true;
-      editedTask.classList.toggle("edit-mode");
-      editedTask.setAttribute("data", editedTask.value);
-      saveTasks();
-    }
-  })
+  // if(document.activeElement !== editedTask){
+  //   editedTask.readOnly = true;
+  //   editedTask.classList.toggle("edit-mode");
+  //   editedTask.setAttribute("data", editedTask.value);
+  //   saveTasks();
+  // }
+
 };
+
+  
+//   //editedTask.addEventListener("keydown", editHandler);
+//  // editedTask.removeEventListener("keydown", editHandler);
+// };
+
+// function editHandler(e){
+//   if (e.key === "Enter"){
+//     const editedTask = e.target.previousSibling;
+
+//   }
+// };
 
 function deleteTask(deleteBtn){
   deleteBtn.parentElement.remove();
   saveTasks();
 
 };
-
- 
