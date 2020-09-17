@@ -15,8 +15,11 @@ const clearAllTaskBtn = document.querySelector(".clear-tasks");
 initialise();
 
 function initialise(){
+    //Load all tasks from local storage
+    loadTasks();
   //Load all event handlers
   LoadEventHandlers();
+
 
 }
 
@@ -42,6 +45,19 @@ clearAllTaskBtn.addEventListener("click", clearTasks);
 //callback checkTaskAction function when UL clicked - will then send control to either the editTask or deleteTask Function
 taskList.addEventListener("click", checkTaskAction);
 
+}
+
+function loadTasks(){
+  const tasks = JSON.parse(window.localStorage.getItem("tasks"));
+  taskList.innerHTML = tasks;
+
+  //get all the task container divs
+  taskDivs = taskList.childNodes;
+  console.log(taskDivs);
+  taskDivs.forEach((taskDiv) => {
+    taskDiv.firstChild.setAttribute("value",taskDiv.firstChild.getAttribute("data"));
+    
+  });
 }
 
 
@@ -70,7 +86,12 @@ function pleaseEnterTask(){
 }
 
 function createTask(){
-  const taskValue = taskInput.value;
+  
+  //clear task input value
+  
+  
+  let taskValue = taskInput.value;
+  
   
   //create the task container
   const newTaskContainer = document.createElement("div");
@@ -81,6 +102,7 @@ function createTask(){
   newTask.value = taskValue;
   newTaskContainer.appendChild(newTask);
   newTask.setAttribute("readonly", "readonly");
+  newTask.setAttribute("data", taskValue);
   //create the edit button
   const newEditBtn = document.createElement("button");
   newEditBtn.classList.add("edit-task");
@@ -94,11 +116,12 @@ function createTask(){
 
   //Save tasks to Local Storage
   saveTasks();
+  taskInput.value = " ";
 }
 
 
 function saveTasks(){
-  tasks = taskList.innerHTML;
+  const tasks = taskList.innerHTML;
   window.localStorage.clear();
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
 
@@ -131,10 +154,12 @@ function editTask(editBtn){
   //clear readonly attribute of task input 
   editedTask.readOnly = false;
   editedTask.classList.toggle("edit-mode");
+  
   window.addEventListener("keypress", (e)=>{
     if (e.key === "Enter"){
       editedTask.readOnly = true;
       editedTask.classList.toggle("edit-mode");
+      editedTask.setAttribute("data", editedTask.value);
       saveTasks();
     }
   })
